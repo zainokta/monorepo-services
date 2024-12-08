@@ -16,4 +16,6 @@ func NewRouter(handler Handler, group gin.RouterGroup) Router {
 
 func (r *Router) Register() {
 	r.group.GET("/product/:id", r.handler.GetProductHandler)
+	r.group.PUT("/product/:id", r.handler.UpdateProduct)
+	r.group.POST("/product/:id/reduceStock", r.handler.ReduceStock)
 }

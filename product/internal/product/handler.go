@@ -38,3 +38,11 @@ func (h *Handler) GetProductHandler(c *gin.Context) {
 		"data": product,
 	})
 }
+
+func (h *Handler) UpdateProduct(c *gin.Context) {
+
+}
+
+func (h *Handler) ReduceStock(c *gin.Context) {
+
+}
