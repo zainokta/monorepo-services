@@ -27,6 +27,10 @@ func New(ctx context.Context, cfg config.Config) error {
 		return err
 	}
 
+	if err := conn.Ping(ctx); err != nil {
+		log.Fatalln(err.Error())
+	}
+
 	DB = conn
 
 	return nil

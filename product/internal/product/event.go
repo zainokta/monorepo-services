@@ -1,7 +1,6 @@
 package product
 
 import (
-	"fmt"
 	"log"
 	"product/pkg/event"
 
@@ -56,6 +55,11 @@ func (pe *ProductEvent) SubscribeSomething() {
 	}
 
 	for msg := range msgs {
-		fmt.Println(msg)
+		pe.handleConsumeSomething(msg)
 	}
+}
+
+func (pe *ProductEvent) handleConsumeSomething(msg amqp.Delivery) {
+	// do something
+
 }
