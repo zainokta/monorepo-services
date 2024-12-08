@@ -3,17 +3,21 @@ package transaction
 import (
 	"net/http"
 	"transaction/internal/config"
+	"transaction/pkg/event"
 
 	"github.com/gin-gonic/gin"
+	"github.com/streadway/amqp"
 )
 
 type Handler struct {
 	cfg config.Config
+	ch  *amqp.Channel
 }
 
-func NewHandler(cfg config.Config) Handler {
+func NewHandler(cfg config.Config, ch *amqp.Channel) Handler {
 	return Handler{
 		cfg: cfg,
+		ch:  ch,
 	}
 }
 
@@ -38,6 +42,8 @@ func (h *Handler) CreateTransaction(c *gin.Context) {
 		})
 		return
 	}
+
+	event.Publisher(h.ch, "", []byte(""))
 
 	c.JSON(http.StatusOK, gin.H{
 		"message": "success creating transaction",

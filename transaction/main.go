@@ -97,7 +97,7 @@ func main() {
 	go transactionEvent.SubscribeSomething()
 
 	// Init Router
-	transactionHandler := transaction.NewHandler(cfg)
+	transactionHandler := transaction.NewHandler(cfg, ch)
 	transactionRouter := transaction.NewRouter(transactionHandler, r.RouterGroup)
 	transactionRouter.Register()
 
